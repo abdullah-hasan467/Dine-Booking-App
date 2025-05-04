@@ -4,6 +4,7 @@ import "../global.css";
 
 export default function RootLayout() {
   return <Stack screenOptions={{
+    headerShown: false,
     headerTitleAlign: 'center',
     headerLargeTitle: true,
     headerStyle: {

@@ -15,10 +15,10 @@ const entryImg = require("../assets/images/Frame.png");
 export default function Index() {
   const router = useRouter();
 
-  const handleGuest = async () => {
-    await AsyncStorage.setItem("isGuest", "true");
-    router.push("/home");
-  };
+  // const handleGuest = async () => {
+  //   await AsyncStorage.setItem("isGuest", "true");
+  //   router.push("/home");
+  // };
 
   return (
     <SafeAreaView className={`bg-[#2b2b2b]`}>
@@ -33,7 +33,7 @@ export default function Index() {
               <Text className="text-lg font-semibold text-center">Sign Up</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={handleGuest}
+            
               className="p-2 my-2 bg-[#2b2b2b] border border-[#f49b33] rounded-lg max-w-fit "
             >
               <Text className="text-lg font-semibold text-[#f49b33] text-center">
