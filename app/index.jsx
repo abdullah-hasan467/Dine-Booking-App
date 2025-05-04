@@ -43,7 +43,7 @@ export default function Index() {
           </View>
           <View>
             <Text className="text-center text-base  font-semibold my-4 text-white">
-              <View className="border-b-2 border-[#f49b33] p-2 mb-1 w-24" /> or{" "}
+              <View className="border-b-2 border-[#f49b33] p-2 mb-1 w-24" />{" "} or {" "}
               <View className="border-b-2 border-[#f49b33] p-2 mb-1 w-24" />
             </Text>
 
