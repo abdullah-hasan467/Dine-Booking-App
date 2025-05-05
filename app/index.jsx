@@ -27,7 +27,7 @@ export default function Index() {
           <Image source={logo} style={{ width: 300, height: 300 }} />
           <View className="w-3/4">
             <TouchableOpacity
-              onPress={() => router.push("/signup")}
+              onPress={() => router.push("/Signup")}
               className="p-2 my-2 bg-[#f49b33]  text-black rounded-lg "
             >
               <Text className="text-lg font-semibold text-center">Sign Up</Text>
