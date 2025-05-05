@@ -1,22 +1,58 @@
+import { BlurView } from 'expo-blur';
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, Image, ImageBackground, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import logo from "../../assets/images/dinetimelogo.png";
-import { Platform } from 'react-native';
-import { ScrollView } from 'react-native';
+import banner from "../../assets/images/homeBanner.png";
+import { restaurants } from '../../store/restaurants';
+
 
 
 const Home = () => {
+    const renderItem = ({ item }) => (
+        <TouchableOpacity
+      className="bg-[#5f5f5f] max-h-64 max-w-xs flex justify-center rounded-lg p-4 mx-4 shadow-md"
+      style={{  backgroundColor: '#5f5f5f',
+        maxHeight: 256,     // max-h-64 (64 * 4 = 256px)
+        maxWidth: 320,      // max-w-xs (xs ~ 20rem = 320px)
+        justifyContent: 'center',
+        borderRadius: 12,   // rounded-lg
+        padding: 16,        // p-4
+        marginHorizontal: 16, // mx-4
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 4,  }}
+    >
+<Image
+  resizeMode="cover"
+  source={{ uri: item.image }}
+  style={{ width: 160, height: 112, borderRadius: 10, marginTop: 8, marginBottom: 4, justifyContent: 'center', alignItems: 'center' }}
+  className="rounded-lg mb-2"
+/>
+
+
+      <Text className="text-white text-lg font-bold mb-2">{item.name}</Text>
+      <Text className="text-white text-base mb-2">{item.address}</Text>
+      <Text className="text-white text-base mb-2">
+        Open: {item.opening} - Close: {item.closing}
+      </Text>
+    </TouchableOpacity>
+
+
+    )
     return (
         <SafeAreaView
         style={[
           { backgroundColor: "#2b2b2b" },
-          Platform.OS == "android" && { paddingBottom:-30 },
+          Platform.OS == "android" && { paddingBottom:30 },
           Platform.OS == "ios" && { paddingBottom: 20 },
         ]}
       >
         <View className="flex items-center">
-          <View className="bg-red-200 w-11/12 rounded-lg shadow-lg justify-between items-center flex flex-row p-2">
+          <View className="bg-[#2f2f2f] w-11/12 rounded-lg shadow-lg 
+          justify-between items-center flex flex-row p-2">
             <View className="flex flex-row">
               <Text
                 className={`text-base h-10
@@ -30,17 +66,95 @@ const Home = () => {
             </View>
           </View>
         </View>
-<ScrollView>
-    
-</ScrollView>
-
-
-
-  
-        </SafeAreaView>
-        
-    );
+<ScrollView stickyHeaderIndices={[0]}>
+<ImageBackground
+          resizeMode="cover"
+          className="mb-4 w-full bg-[#2b2b2b] h-52 items-center justify-center"
+          source={banner}
+          style={{ width: 450, height: 200 }}
+        >
+          <BlurView
+            intensity={Platform.OS === "android" ? 100 : 25}
+            tint="dark"
+            className="w-full p-4 shadow-lg"
+          >
+            <Text
+            style={{fontSize:28, textAlign:"center", padding:10}} className=" font-bold text-white">
+              Dine with your loved ones
+            </Text>
+          </BlurView>
+        </ImageBackground>
+        <View className="p-4 bg-[#2b2b2b] flex-row items-center">
+          <Text className="text-3xl text-white mr-2 font-semibold">
+            Special Discount %
+          </Text>
+        </View>
+        {restaurants.length > 0 ? (
+          <FlatList
+            data={restaurants}
+            renderItem={renderItem}
+            horizontal
+            contentContainerStyle={{ padding: 16 }}
+            showsHorizontalScrollIndicator={false}
+            scrollEnabled={true}
+          />
+        ) : (
+          <ActivityIndicator animating color={"#fb9b33"} />
+        )}
+        <View className="p-4 bg-[#2b2b2b] flex-row items-center">
+          <Text className="text-3xl text-[#fb9b33] mr-2 font-semibold">
+            Our Restaurants
+          </Text>
+        </View>
+        {restaurants.length > 0 ? (
+          <FlatList
+            data={restaurants}
+            renderItem={renderItem}
+            horizontal
+            contentContainerStyle={{ padding: 16 }}
+            showsHorizontalScrollIndicator={false}
+            scrollEnabled={true}
+          />
+        ) : (
+          <ActivityIndicator animating color={"#fb9b33"} />
+        )}
+                {restaurants.length > 0 ? (
+          <FlatList
+            data={restaurants}
+            renderItem={renderItem}
+            horizontal
+            contentContainerStyle={{ padding: 16 }}
+            showsHorizontalScrollIndicator={false}
+            scrollEnabled={true}
+          />
+        ) : (
+          <ActivityIndicator animating color={"#fb9b33"} />
+        )}
+        <View className="p-4 bg-[#2b2b2b] flex-row items-center">
+          <Text className="text-3xl text-[#fb9b33] mr-2 font-semibold">
+            Our Restaurants
+          </Text>
+        </View>
+        {restaurants.length > 0 ? (
+          <FlatList
+            data={restaurants}
+            renderItem={renderItem}
+            horizontal
+            contentContainerStyle={{ padding: 16 }}
+            showsHorizontalScrollIndicator={false}
+            scrollEnabled={true}
+          />
+        ) : (
+          <ActivityIndicator animating color={"#fb9b33"} />
+        )}
+        <View className="p-4 bg-[#2b2b2b] flex-row items-center">
+          <Text className="text-3xl text-[#fb9b33] mr-2 font-semibold">
+            Our Restaurants
+          </Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
 }
-
 
 export default Home;
