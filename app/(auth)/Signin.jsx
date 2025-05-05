@@ -2,13 +2,13 @@ import { useRouter } from 'expo-router';
 import { Formik } from 'formik';
 import React from 'react';
 import {
-  Image,
-  ScrollView,
-  StatusBar,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
+    Image,
+    ScrollView,
+    StatusBar,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import logo from "../../assets/images/dinetimelogo.png";
@@ -19,7 +19,7 @@ const Signup = () => {
   const router = useRouter();
 
  
- const handleSignup = () => {
+ const handleSigin = () => {
 
  }
     return (
@@ -35,7 +35,7 @@ const Signup = () => {
             <Formik
               initialValues={{ email: "", password: "" }}
               validationSchema={validationSchema}
-              onSubmit={handleSignup}
+              onSubmit={handleSigin}
             >
               {({
                 handleChange,
@@ -80,42 +80,43 @@ const Signup = () => {
                     className="p-2 my-2 bg-[#f49b33]  text-black rounded-lg mt-10"
                   >
                     <Text className="text-lg font-semibold text-center">
-                      Sign Up
+                      Sign In
                     </Text>
                   </TouchableOpacity>
                 </View>
               )}
             </Formik>
-            
             <View className="flex justify-center items-center">
-              <TouchableOpacity
-                className="flex flex-row justify-center mt-5 p-2 items-center"
-                onPress={() => router.push("/Signin")}
-              >
-                <Text className="text-white font-semibold">
-                  Already a User?{" "}
-                </Text>
-                <Text className="text-base font-semibold underline text-[#f49b33]">
-                  Sign up
-                </Text>
-              </TouchableOpacity>
-
-              <Text className="text-center text-base  font-semibold mb-4 text-white">
-                <View className="border-b-2 border-[#f49b33] p-2 mb-1 w-24" />{" "}
-                or{" "}
-                <View className="border-b-2 border-[#f49b33] p-2 mb-1 w-24" />
-              </Text>
-              <TouchableOpacity
-                className="flex flex-row justify-center mb-5 p-2 items-center"
-                onPress={() => router.push("/Home")} 
-              >
-                <Text className="text-white font-semibold">Be a</Text>
-                <Text className="text-base font-semibold underline text-[#f49b33]">
-                  {" "}
-                  Guest User
-                </Text>
-              </TouchableOpacity>
-            </View>
+                          <TouchableOpacity
+                            className="flex flex-row justify-center mt-5 p-2 items-center"
+                            onPress={() => router.push("/Signup")}
+                          >
+                            <Text className="text-white font-semibold">
+                              Already a User?{" "}
+                            </Text>
+                            <Text className="text-base font-semibold underline text-[#f49b33]">
+                              Sign in
+                            </Text>
+                          </TouchableOpacity>
+            
+                          <Text className="text-center text-base  font-semibold mb-4 text-white">
+                            <View className="border-b-2 border-[#f49b33] p-2 mb-1 w-24" />{" "}
+                            or{" "}
+                            <View className="border-b-2 border-[#f49b33] p-2 mb-1 w-24" />
+                          </Text>
+                          <TouchableOpacity
+                            className="flex flex-row justify-center mb-5 p-2 items-center"
+                            onPress={() => router.push("/(tabs)/Home")}
+                            
+                          >
+                            <Text className="text-white font-semibold">Be a</Text>
+                            <Text className="text-base font-semibold underline text-[#f49b33]">
+                              {" "}
+                              Guest User
+                            </Text>
+                          </TouchableOpacity>
+                        </View>
+            
           </View>
         </View>
         <View className="flex-1">

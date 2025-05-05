@@ -35,6 +35,7 @@ export default function Index() {
             <TouchableOpacity
             
               className="p-2 my-2 bg-[#2b2b2b] border border-[#f49b33] rounded-lg max-w-fit "
+              onPress={() => router.push("/(tabs)/Home")}
             >
               <Text className="text-lg font-semibold text-[#f49b33] text-center">
                 Guest User
@@ -49,7 +50,7 @@ export default function Index() {
 
             <TouchableOpacity
               className="flex flex-row justify-center items-center"
-              onPress={() => router.push("/signin")}
+              onPress={() => router.push("/Signin")}
             >
               <Text className="text-white font-semibold">Already a User? </Text>
               <Text className="text-base font-semibold underline text-[#f49b33]">
