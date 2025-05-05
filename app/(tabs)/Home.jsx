@@ -4,6 +4,7 @@ import { ActivityIndicator, FlatList, Image, ImageBackground, Platform, ScrollVi
 import { SafeAreaView } from 'react-native-safe-area-context';
 import logo from "../../assets/images/dinetimelogo.png";
 import banner from "../../assets/images/homeBanner.png";
+import "../../global.css";
 import { restaurants } from '../../store/restaurants';
 
 
@@ -45,7 +46,7 @@ const Home = () => {
     return (
         <SafeAreaView
         style={[
-          { backgroundColor: "#2b2b2b" },
+          { backgroundColor: "#2b2b2b", marginleft: 40},
           Platform.OS == "android" && { paddingBottom:30 },
           Platform.OS == "ios" && { paddingBottom: 20 },
         ]}
@@ -85,7 +86,7 @@ const Home = () => {
           </BlurView>
         </ImageBackground>
         <View className="p-4 bg-[#2b2b2b] flex-row items-center">
-          <Text className="text-3xl text-white mr-2 font-semibold">
+          <Text className=" text-white mr-2 font-semibold" style={{fontSize:24, marginLeft:25}}>
             Special Discount %
           </Text>
         </View>
@@ -101,10 +102,18 @@ const Home = () => {
         ) : (
           <ActivityIndicator animating color={"#fb9b33"} />
         )}
-        <View className="p-4 bg-[#2b2b2b] flex-row items-center">
-          <Text className="text-3xl text-[#fb9b33] mr-2 font-semibold">
-            Our Restaurants
-          </Text>
+        <View className="p-4 bg-[#2b2b2b] flex-row items-center mr-5">
+        <Text
+  style={{
+    color: '#fb9b33',
+    fontWeight: '600',
+    fontSize: 24,
+    marginLeft:25
+  }}
+>
+  Our Restaurants
+</Text>
+
         </View>
         {restaurants.length > 0 ? (
           <FlatList
@@ -118,40 +127,7 @@ const Home = () => {
         ) : (
           <ActivityIndicator animating color={"#fb9b33"} />
         )}
-                {restaurants.length > 0 ? (
-          <FlatList
-            data={restaurants}
-            renderItem={renderItem}
-            horizontal
-            contentContainerStyle={{ padding: 16 }}
-            showsHorizontalScrollIndicator={false}
-            scrollEnabled={true}
-          />
-        ) : (
-          <ActivityIndicator animating color={"#fb9b33"} />
-        )}
-        <View className="p-4 bg-[#2b2b2b] flex-row items-center">
-          <Text className="text-3xl text-[#fb9b33] mr-2 font-semibold">
-            Our Restaurants
-          </Text>
-        </View>
-        {restaurants.length > 0 ? (
-          <FlatList
-            data={restaurants}
-            renderItem={renderItem}
-            horizontal
-            contentContainerStyle={{ padding: 16 }}
-            showsHorizontalScrollIndicator={false}
-            scrollEnabled={true}
-          />
-        ) : (
-          <ActivityIndicator animating color={"#fb9b33"} />
-        )}
-        <View className="p-4 bg-[#2b2b2b] flex-row items-center">
-          <Text className="text-3xl text-[#fb9b33] mr-2 font-semibold">
-            Our Restaurants
-          </Text>
-        </View>
+        
       </ScrollView>
     </SafeAreaView>
   );
