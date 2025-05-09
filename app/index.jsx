@@ -38,7 +38,7 @@ export default function Index() {
               onPress={() => router.push("/(tabs)/Home")}
             >
               <Text className="text-lg font-semibold text-[#f49b33] text-center">
-                Guest User
+                Guest User By Hasan
               </Text>
             </TouchableOpacity>
           </View>

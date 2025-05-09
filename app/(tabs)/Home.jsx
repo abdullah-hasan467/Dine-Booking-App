@@ -1,15 +1,20 @@
 import { BlurView } from 'expo-blur';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ActivityIndicator, FlatList, Image, ImageBackground, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import logo from "../../assets/images/dinetimelogo.png";
 import banner from "../../assets/images/homeBanner.png";
 import "../../global.css";
+import uploadData from '../../store/config/bulkupload';
 import { restaurants } from '../../store/restaurants';
 
 
 
 const Home = () => {
+  useEffect(() => {
+    uploadData()
+  },[])
+
     const renderItem = ({ item }) => (
         <TouchableOpacity
       className="bg-[#5f5f5f] max-h-64 max-w-xs flex justify-center rounded-lg p-4 mx-4 shadow-md"
