@@ -6,6 +6,7 @@ import {
     Dimensions,
     FlatList,
     Image,
+    Linking,
     Platform,
     ScrollView,
     Text,
@@ -191,10 +192,21 @@ import { db } from "../../store/config/firebaseConfig";
       }
     };
     
+    const handleLocation = async () => {
+        const url = "https://maps.app.goo.gl/TtSmNr394bVp9J8n8";
+        const supported = await Linking.canOpenURL(url);
+        if (supported) {
+          await Linking.openURL(url);
+        } else {
+          console.log("Don't know how to open URL", url);
+        }
+      };
+    
+
+
     useEffect(() => {
       getRestaurantData();
     }, []);
-console.log(restaurantData);
   
     return (
         <SafeAreaView 
@@ -222,9 +234,31 @@ console.log(restaurantData);
             showsHorizontalScrollIndicator={false}
             style={{ borderRadius: 25 }}
           />
-
-
                 </View>
+
+                <View className="flex-1 flex-row mt-2 p-2">
+          <Ionicons name="location-sharp" size={24} color="#f49b33" />
+          <Text className="max-w-[75%] text-white">
+            {restaurantData?.address} |{"  "}
+            <Text
+              onPress={handleLocation}
+              className="underline flex items-center mt-1 text-[#f49b33] italic font-semibold"
+            >
+              Get Direction
+            </Text>
+          </Text>
+        </View>
+        <View className="flex-1 flex-row p-2">
+          <Ionicons name="time" size={20} color="#f49b33" />
+          <Text className="max-w-[75%] mx-2 font-semibold text-white">
+            {restaurantData?.opening} - {restaurantData?.closing}
+          </Text>
+        </View>
+        
+
+
+
+
             </ScrollView>
         </SafeAreaView>
 
