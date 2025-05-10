@@ -1,74 +1,87 @@
-import { useLocalSearchParams } from 'expo-router';
-import { getDocs, query, where } from 'firebase/firestore';
-import { collection } from 'firebase/firestore/lite';
-import React, { useEffect, useState } from 'react';
-import { Platform, ScrollView, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { db } from '../../store/config/firebaseConfig';
+import { useLocalSearchParams } from "expo-router";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import React, { useEffect, useRef, useState } from "react";
+import {
+    Dimensions,
+    Platform,
+    ScrollView,
+    Text,
+    View
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { db } from "../../store/config/firebaseConfig";
 
-const Restaurent = () => {
-    const {restaurent} = useLocalSearchParams();
-    const [restaurentData, setRestaurentData] = useState({});
+  
+  
+  export default function Restaurant() {
+    const { restaurent } = useLocalSearchParams();
+    const flatListRef = useRef(null);
+    const windowWidth = Dimensions.get("window").width;
+
+    const [restaurantData, setRestaurantData] = useState({});
     const [carouselData, setCarouselData] = useState({});
-    const [soltsData, setSlotsData] = useState({});
-
-    const getRestaurentsData = async () => {
-        try{
-            const restaurentQyuery = query(collection(db, "restaurants"), where("name", "==", restaurent));
-            const restaurentSnapshot = await getDocs(restaurentQyuery);
-            
-            if (restaurentSnapshot.empty) {
-                console.log("No matching Restaurents Faound")
-                return;
-            }
-            for (const doc of restaurentSnapshot.docs) {
-                const restaurentData = doc.data();
-                setRestaurentData(restaurentData);
-                console.log("Restaurent Data: ", data);
-
-                const carouselQuery = query(collection(db, "carousel"), where("res_id", "==",doc.ref));
-                const carouselSnapshot = await getDocs(carouselQuery);
-
-
-                const carouselimages = [];
-                if (carouselSnapshot.empty) {
-                    console.log("No matching Carousel Faound")
-                    return;
-                }
-                carouselSnapshot.forEach((carouselDoc) => {
-                    carouselimages.push(carouselDoc.data());
-                })
-                setCarouselData(carouselimages);
-
-
-
-
-                const slotsQuery = query(collection(db, "slots"), where("ref_id", "==",doc.ref));
-                const soltsSnapshot = await getDocs(slotsQuery);
-
-
-                const slots = [];
-                if (soltsSnapshot.empty) {
-                    console.log("No matching Slots Faound")
-                    return;
-                }
-                soltsSnapshot.forEach((slotlDoc) => {
-                    slots.push(slotlDoc.data());
-                })
-                setslotsData(slots);
-
-            }
-
-        } catch (error) {
-            console.error("Error fetching restaurant data: ", error);
+    const [slotsData, setSlotsData] = useState({});
+  
+    
+  
+  
+    const getRestaurantData = async () => {
+      try {
+        const restaurantQuery = query(
+          collection(db, "restaurants"),
+          where("name", "==", restaurent)
+        );
+        const restaurantSnapshot = await getDocs(restaurantQuery);
+  
+        if (restaurantSnapshot.empty) {
+          console.log("No matching restaurant found");
+          return;
         }
-
-    }
-
+  
+        for (const doc of restaurantSnapshot.docs) {
+          const restaurantData = doc.data();
+          setRestaurantData(restaurantData);
+  
+          const carouselQuery = query(
+            collection(db, "carousel"),
+            where("res_id", "==", doc.ref)
+          );
+          const carouselSnapshot = await getDocs(carouselQuery);
+          const carouselImages = [];
+          if (carouselSnapshot.empty) {
+            console.log("No matching carousel found");
+            return;
+          }
+          carouselSnapshot.forEach((carouselDoc) => {
+            carouselImages.push(carouselDoc.data());
+          });
+          setCarouselData(carouselImages);
+  
+          const slotsQuery = query(
+            collection(db, "slots"),
+            where("ref_id", "==", doc.ref)
+          );
+          const slotsSnapshot = await getDocs(slotsQuery);
+          const slots = [];
+          if (carouselSnapshot.empty) {
+            console.log("No matching slots found");
+            return;
+          }
+          slotsSnapshot.forEach((slotDoc) => {
+            slots.push(slotDoc.data());
+          });
+          setSlotsData(slots[0]?.slot);
+        }
+      } catch (error) {
+        console.log("Error fetching data", error);
+      }
+    };
+    
     useEffect(() => {
-        getRestaurentsData();
+      getRestaurantData();
     }, []);
-    console.log(restaurentData,carouselData,soltsData);
+console.log(restaurantData);
+  
     return (
         <SafeAreaView 
         style={[
@@ -87,9 +100,7 @@ const Restaurent = () => {
                 </View>
             </ScrollView>
         </SafeAreaView>
-    )
-}
 
-
-
-export default Restaurent;
+    );
+  }
+  
