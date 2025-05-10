@@ -307,5 +307,5 @@ const restaurants = [
     },
   ];
   
-  export { restaurants, carouselImages, slots };
+  export { carouselImages, restaurants, slots };
   

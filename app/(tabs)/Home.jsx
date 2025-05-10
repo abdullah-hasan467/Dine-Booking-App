@@ -12,7 +12,7 @@ import { restaurants } from '../../store/restaurants';
 
 const Home = () => {
   useEffect(() => {
-    uploadData()
+    uploadData();
   },[])
 
     const renderItem = ({ item }) => (
