@@ -8,10 +8,12 @@ import "../../global.css";
 // import uploadData from '../../store/config/bulkupload';
 import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from '../../store/config/firebaseConfig';
+import { useRouter } from 'expo-router';
 
 
 
 const Home = () => {
+  const router = useRouter();
   // useEffect(() => {
   //   uploadData();
   // },[])
@@ -20,7 +22,9 @@ const [restaurants, setRestaurants] = useState([]);
 
 
     const renderItem = ({ item }) => (
-        <TouchableOpacity
+        <TouchableOpacity onPress={()=>{
+          router.push(`/restaurent/${item.name}`)
+        }}
       className="bg-[#5f5f5f] max-h-64 max-w-xs flex justify-center rounded-lg p-4 mx-4 shadow-md"
       style={{  backgroundColor: '#5f5f5f',
         maxHeight: 256,     // max-h-64 (64 * 4 = 256px)
@@ -63,7 +67,7 @@ const [restaurants, setRestaurants] = useState([]);
     useEffect(() => {
       getrestauresnts()
     },[])
-    
+
     return (
         <SafeAreaView
         style={[
