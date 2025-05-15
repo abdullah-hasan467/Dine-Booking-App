@@ -284,7 +284,12 @@ import { db } from "../../store/config/firebaseConfig";
             </View>
             </View>
 <View className="flex-1">
-<FindSlots slots = {slotsData} selectedSlot = {selectedSlot} setSelectedSlot = {setSelectedSlot} />
+<FindSlots 
+date = {date}
+selectedNumber = {selectedNumber}
+slots = {slotsData} 
+selectedSlot = {selectedSlot} 
+setSelectedSlot = {setSelectedSlot} />
 </View>
 
 
