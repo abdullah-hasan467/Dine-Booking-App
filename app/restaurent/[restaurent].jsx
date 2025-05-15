@@ -1,23 +1,27 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useLocalSearchParams } from "expo-router";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
-    Dimensions,
-    FlatList,
-    Image,
-    Linking,
-    Platform,
-    ScrollView,
-    Text,
-    View
+  Dimensions,
+  FlatList,
+  Image,
+  Linking,
+  Platform,
+  ScrollView,
+  Text,
+  View
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+
+import DatePickerComponent from "../../components/restaurent/DatePickerComponent";
 import { db } from "../../store/config/firebaseConfig";
 
   
   
   export default function Restaurant() {
+  
     const { restaurent } = useLocalSearchParams();
     const flatListRef = useRef(null);
     const windowWidth = Dimensions.get("window").width;
@@ -255,7 +259,25 @@ import { db } from "../../store/config/firebaseConfig";
           </Text>
         </View>
         
-
+<View className="flex-1 border m-2 p-2 border-[#f49b33] rounded-lg">
+          <View className="flex-1 flex-row m-2 p-2 justify-end items-center">
+            <View className="flex-1 flex-row">
+              <Ionicons name="calendar" size={20} color="#f49b33" />
+              <Text className="text-white mx-2 text-base">
+                Select booking date
+              </Text>
+            </View>
+            <DatePickerComponent date={date} setDate={setDate} />
+          </View>
+          <View className="flex-1 flex-row bg-[#474747] rounded-lg  m-2 p-2 justify-end items-center">
+            <View className="flex-1 flex-row">
+              <Ionicons name="people" size={20} color="#f49b33" />
+              <Text className="text-white mx-2 text-base">
+                Select number of guests
+              </Text>
+            </View>
+            </View>
+            </View>
 
 
 
