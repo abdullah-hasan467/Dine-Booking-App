@@ -17,6 +17,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import DatePickerComponent from "../../components/restaurent/DatePickerComponent";
 import { db } from "../../store/config/firebaseConfig";
+import GuestPickerComponent from "../../components/restaurent/GuestPickerComponent";
 
   
   
@@ -276,6 +277,7 @@ import { db } from "../../store/config/firebaseConfig";
                 Select number of guests
               </Text>
             </View>
+            <GuestPickerComponent selectedNumber={selectedNumber} setSelectedNumber={setSelectedNumber}/>
             </View>
             </View>
 
