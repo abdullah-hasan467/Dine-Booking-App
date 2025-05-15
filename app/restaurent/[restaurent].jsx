@@ -16,8 +16,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 
 import DatePickerComponent from "../../components/restaurent/DatePickerComponent";
-import { db } from "../../store/config/firebaseConfig";
+
+import FindSlots from "../../components/restaurent/FindSlots";
 import GuestPickerComponent from "../../components/restaurent/GuestPickerComponent";
+import { db } from "../../store/config/firebaseConfig";
 
   
   
@@ -35,6 +37,7 @@ import GuestPickerComponent from "../../components/restaurent/GuestPickerCompone
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [selectedNumber, setSelectedNumber] = useState(2);
     const [date, setDate] = useState(new Date());
+    
 
     const handleNextImage = () => {
         const carouselLength = carouselData[0]?.images.length;
@@ -280,7 +283,9 @@ import GuestPickerComponent from "../../components/restaurent/GuestPickerCompone
             <GuestPickerComponent selectedNumber={selectedNumber} setSelectedNumber={setSelectedNumber}/>
             </View>
             </View>
-
+<View className="flex-1">
+<FindSlots slots = {slotsData} selectedSlot = {selectedSlot} setSelectedSlot = {setSelectedSlot} />
+</View>
 
 
             </ScrollView>

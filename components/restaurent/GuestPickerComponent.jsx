@@ -20,7 +20,7 @@ const GuestPickerComponent = ({ selectedNumber, setSelectedNumber }) => {
       <TouchableOpacity onPress={increment} className="rounded">
         <Text className="text-white text-xl border border-[#f49b33] rounded-lg p-2">
           +
-        </Text>
+        </Text> 
       </TouchableOpacity>
     </View>
   );
